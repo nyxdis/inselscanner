@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inselscanner - Pokémon Sonne/Mond & Ultra Sonne/Mond</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>🏝️ Inselscanner</h1>
+        <p>Heute verfügbare Pokémon in Sonne/Mond & Ultra Sonne/Mond</p>
+        <div class="header-date">
+          <span id="current-day"></span>, <span id="current-date"></span>
+        </div>
+      </header>
+
+      <main>
+        <div class="game-selector">
+          <h3>🎮 Spielversion wählen</h3>
+          <div class="version-tabs">
+            <button class="version-tab active" data-version="ultra">
+              Ultra Sonne/Mond
+            </button>
+            <button class="version-tab" data-version="original">
+              Sonne/Mond
+            </button>
+          </div>
+        </div>
+
+        <div class="pokemon-grid" id="pokemon-grid">
+          <!-- Pokemon cards will be populated by JavaScript -->
+        </div>
+
+        <div class="qr-codes-section">
+          <h3>⚡ Tägliche Bonus QR-Codes</h3>
+          <p>Scanne diese 5 speziellen QR-Codes für je 20 Punkte (= 1 Scan)!</p>
+          <div class="qr-codes-container">
+            <img
+              src="https://www.pokewiki.de/images/3/3e/Pokewiki_scanner.jpg"
+              alt="Täglich verfügbare Bonus QR-Codes"
+              class="qr-codes-image"
+              loading="lazy"
+            />
+          </div>
+          <div class="qr-info">
+            <p>
+              <strong>💡 Tipp:</strong> Diese QR-Codes können jeden Tag erneut
+              gescannt werden!
+            </p>
+            <p class="qr-source">
+              <small
+                >Quelle:
+                <a
+                  href="https://www.pokewiki.de/Datei:Pokewiki_scanner.jpg"
+                  target="_blank"
+                  rel="noopener"
+                  >PokéWiki</a
+                ></small
+              >
+            </p>
+          </div>
+        </div>
+
+        <div class="info-section">
+          <h3>ℹ️ So funktioniert der Inselscanner</h3>
+          <ol>
+            <li>Scanne 10 QR-Codes mit der Kamera deines 3DS</li>
+            <li>Der Inselscanner wird für eine Stunde aktiviert</li>
+            <li>
+              Besuche die entsprechende Insel und finde das seltene Pokémon
+            </li>
+            <li>Du hast nur eine Chance pro Aktivierung!</li>
+          </ol>
+        </div>
+      </main>
+
+      <footer>
+        <p id="footer-text">Daten für Pokémon Ultra Sonne & Ultra Mond</p>
+        <p>© 2026 - Inselscanner App</p>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

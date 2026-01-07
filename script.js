@@ -138,6 +138,8 @@ const dailyLocations = {
 
 // Current game version
 let currentVersion = "ultra";
+// Current selected date offset (0 = today, 1 = tomorrow, -1 = yesterday, etc.)
+let dateOffset = 0;
 // Function to get Pokemon image URL from PokeAPI
 function getPokemonImageUrl(pokemonId) {
   // Using official artwork - high quality images
@@ -217,6 +219,7 @@ const monthNames = {
 
 function getCurrentDay() {
   const today = new Date();
+  today.setDate(today.getDate() + dateOffset);
   const dayIndex = today.getDay();
   return {
     name: dayNames.de[dayIndex],
@@ -379,16 +382,49 @@ function switchVersion(version) {
   setTimeout(addScrollAnimation, 100);
 }
 
+// Function to update Today button visibility
+function updateTodayButtonVisibility() {
+  const todayBtn = document.getElementById("today-btn");
+  if (dateOffset === 0) {
+    todayBtn.classList.add("hidden");
+  } else {
+    todayBtn.classList.remove("hidden");
+  }
+}
+
 // Initialize the app
-document.addEventListener("DOMContentLoaded", () => {
-  displayTodaysPokemon();
+document.addEventListener("DOMContentLoaded", async () => {
+  // Add navigation button event listeners
+  document.getElementById("prev-day").addEventListener("click", async () => {
+    dateOffset--;
+    await displayTodaysPokemon();
+    updateTodayButtonVisibility();
+    setTimeout(addScrollAnimation, 100);
+  });
+
+  document.getElementById("next-day").addEventListener("click", async () => {
+    dateOffset++;
+    await displayTodaysPokemon();
+    updateTodayButtonVisibility();
+    setTimeout(addScrollAnimation, 100);
+  });
+
+  document.getElementById("today-btn").addEventListener("click", async () => {
+    dateOffset = 0;
+    await displayTodaysPokemon();
+    updateTodayButtonVisibility();
+    setTimeout(addScrollAnimation, 100);
+  });
+
+  await displayTodaysPokemon();
+  updateTodayButtonVisibility();
   setTimeout(addScrollAnimation, 100);
 
   // Add event listeners for version tabs
   document.querySelectorAll(".version-tab").forEach((tab) => {
-    tab.addEventListener("click", (e) => {
+    tab.addEventListener("click", async (e) => {
       const version = e.target.dataset.version;
-      switchVersion(version);
+      await switchVersion(version);
     });
   });
 });

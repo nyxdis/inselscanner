@@ -198,6 +198,17 @@ header p {
     font-weight: 500;
 }
 
+.location-link {
+    color: #667eea;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.location-link:hover {
+    color: #4c63d2;
+    text-decoration: underline;
+}
+
 .pokemon-list {
     list-style: none;
 }

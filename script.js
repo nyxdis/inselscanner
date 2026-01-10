@@ -235,6 +235,19 @@ function formatDate(date) {
   return `${day}. ${month} ${year}`;
 }
 
+// Function to create pokewiki.de URL from location name
+function getPokewikiUrl(locationName) {
+  // Replace spaces with underscores for the URL format
+  let urlName = locationName.replace(/\s+/g, "_");
+
+  // Add (Alola) suffix for routes
+  if (locationName.startsWith("Route ")) {
+    urlName += "_(Alola)";
+  }
+
+  return `https://www.pokewiki.de/${urlName}`;
+}
+
 async function createPokemonCard(islandData, locationData) {
   const card = document.createElement("div");
   card.className = "pokemon-card";
@@ -243,7 +256,11 @@ async function createPokemonCard(islandData, locationData) {
   card.innerHTML = `
     <h3>${islandData.island}</h3>
     <div class="location-info">
-      <span class="location-label">📍 ${locationData.location}</span>
+      <span class="location-label">📍 <a href="${getPokewikiUrl(
+        locationData.location
+      )}" target="_blank" rel="noopener noreferrer" class="location-link">${
+    locationData.location
+  }</a></span>
     </div>
     <ul class="pokemon-list">
       ${islandData.pokemon
